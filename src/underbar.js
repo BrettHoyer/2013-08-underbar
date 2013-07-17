@@ -133,8 +133,7 @@ var _ = { };
 
   // Calls the method named by methodName on each value in the list.
   _.invoke = function(list, methodName, args) { 
-    // for(var i = 0; i < list.length; i++){
-      _.map(list, function(element, i, list){
+      _.each(list, function(element, i, list){
       if(typeof(methodName) === "string"){
         list[i] = list[i][methodName](args)
       } else if(typeof(methodName) === 'function'){
