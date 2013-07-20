@@ -157,6 +157,11 @@ var _ = { };
   //   }, 0); // should be 6
   //
   _.reduce = function(collection, iterator, initialValue) {
+    var total = initialValue || 0
+    for(var i in collection){
+      total = iterator(total, collection[i])
+    }
+    return total
   };
 
   // Determine if the array or object contains a given value (using `===`).
@@ -173,7 +178,20 @@ var _ = { };
 
 
   // Determine whether all of the elements match a truth test.
+
+  // MY COMMENT: unreliable ==, this is poorly done as of now
+
   _.every = function(collection, iterator) {
+    for(var i = 0; i < collection.length; i++){
+      if(arguments.length === 1){
+     
+      } else if(collection[i] === undefined){
+        return false
+      } else if(iterator(collection[i]) == false){
+        return false
+      }
+    }
+    return true
     // TIP: Try re-using reduce() here.
   };
 
