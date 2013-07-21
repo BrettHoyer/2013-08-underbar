@@ -342,7 +342,19 @@ var _ = { };
 
   // Shuffle an array.
   _.shuffle = function(array) {
-  };
+    var indices = []
+    var newArray = []
+    newArray.length = array.length
+    console.log(newArray.length)
+    for(var i = 0; i < array.length; i++){
+      var index = Math.floor(Math.random()*array.length)
+      while (newArray[index] !== undefined){
+        index = Math.floor(Math.random()*array.length)
+      }
+      newArray[index] = array[i]
+    }
+    return newArray
+  }
 
 
   /**
