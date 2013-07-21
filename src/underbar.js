@@ -199,21 +199,18 @@ var _ = { };
   // provided, provide a default one
 
   // MY COMMENT: holy hell this is ghetto
-  
+
   _.some = function(collection, iterator) {
      var any = false
      for(var elem in collection){
       // console.log(arguments.length)
        if(arguments.length === 1){
-          console.log("element:", collection[elem])
           if (collection[elem] === null){
             any = false
           } else if (collection[elem] == false){
             any = false
-            console.log("any: ", any)
          } else{
           any = true
-          console.log("any: ", any)
           break
          }
         } else {
@@ -227,7 +224,6 @@ var _ = { };
           }
         }
       }
-      console.log("return:", any)
       return any  
 
     // TIP: There's a very clever way to re-use every() here.
@@ -253,11 +249,27 @@ var _ = { };
   //     bla: "even more stuff"
   //   }); // obj1 now contains key1, key2, key3 and bla
   _.extend = function(obj) {
+    for(var count in arguments){
+      if(count > 0)
+      for(var key in arguments[count]){
+        obj[key] = arguments[count][key]
+      }
+    }
+    return obj
   };
 
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
+    for(var count in arguments){
+      if(count > 0)
+      for(var key in arguments[count]){
+        if(obj[key] === undefined){
+          obj[key] = arguments[count][key]
+        }
+      }
+    }
+    return obj
   };
 
 
